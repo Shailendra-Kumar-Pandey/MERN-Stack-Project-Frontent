@@ -1,5 +1,5 @@
 import NoteContext from "./noteContext";
-import { useState } from "react";
+import React, {useState } from "react";
 
 const NoteState = (props) => {
   const notesinitioal = [
@@ -40,10 +40,19 @@ const NoteState = (props) => {
     setNotes(notes.concat(note));
   };
   // Update Notes
-  const updateNote = () => {};
+  const updateNote = () => {
 
+
+  };
   // Delete Notes
-  const deleteNote = () => {};
+  const deleteNote = (id) => {
+    // todo: API Call
+  console.log("Deleting this note id" + id);
+  const newNote=notes.filter((note)=>{
+    return note._id!==id;
+  })
+  setNotes(newNote);  
+  };
 
   return (
     <NoteContext.Provider value={{ notes, addNote, updateNote, deleteNote }}>
