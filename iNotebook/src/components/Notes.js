@@ -19,7 +19,6 @@ const Notes = () => {
     setNote({id:currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag});
   };
   const handleClick = (e)=>{
-    console.log("Updating the note...", note );
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
 
@@ -75,6 +74,8 @@ const Notes = () => {
                   aria-describedby="emailHelp"
                   value={note.etitle}
                   onChange={onChange}
+                  minLength={5}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -88,6 +89,8 @@ const Notes = () => {
                   name="edescription"
                   value={note.edescription}
                   onChange={onChange}
+                  minLength={5}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -101,6 +104,8 @@ const Notes = () => {
                   name="etag"
                   value={note.etag}
                   onChange={onChange}
+                  minLength={3}
+                  required
                 />
               </div>
             </div>
@@ -114,7 +119,7 @@ const Notes = () => {
               >
                 Close
               </button>
-              <button onClick={handleClick} type="button" className="btn btn-primary">
+              <button disabled={note.etitle.length<5 || note.edescription.length<5 || note.etag.length<3 } onClick={handleClick} type="button" className="btn btn-primary">
                 Update Note
               </button>
             </div>
@@ -123,6 +128,9 @@ const Notes = () => {
       </div>
       <div className="row my-3">
         <h1>Your Notes</h1>
+        <div className="container mx-2">
+        {notes.length===0 && "No notes to display"}
+        </div>
         {notes.map((note) => {
           return (
             <Noteitems key={note._id} updateNote={updateNote} note={note} />

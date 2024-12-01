@@ -48,8 +48,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({title, description, tag})
     });
-    const json = await response.json(); 
-    console.log(json);
+    const json = await response.json();
      let newNotes = JSON.parse(JSON.stringify(notes))
     // Logic to edit in client
     for (let index = 0; index < newNotes.length; index++) {
@@ -74,9 +73,7 @@ const NoteState = (props) => {
       },    
     })
     const json = await response.json();
-    console.log(json);
     // todo: API Call
-  console.log("Deleting this note id" + id);
   const newNote=notes.filter((note)=>{
     return note._id!==id;
   })
