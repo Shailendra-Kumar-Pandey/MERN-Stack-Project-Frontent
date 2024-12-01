@@ -33,46 +33,36 @@ const NoteState = (props) => {
         },
       body: JSON.stringify({title, description, tag})
     });
-    const json = await response.json();
-    console.log(json);
-
-    //logic Add note
-    console.log("Adding a new Note");
-    const note = {
-      _id: "674c07444978b6be28b1d88d",
-      user: "673f97d4aaaa2a06cbc02ae3",
-      title: title,
-      description: description,
-      tag: tag,
-      date: "2024-11-23T09:23:05.236Z",
-      __v: 0,
-    };
+    const note = await response.json();
     setNotes(notes.concat(note));
   };
-  // Edit Notes
+ 
+  // Edit a Note
   const editNote = async (id, title, description, tag) => {
-    //API call
+    // API Call 
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-      method: 'POST',
-      headers:{
-        'Content-Type': 'aplication/json',
-        "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjczZjk3ZDRhYWFhMmEwNmNiYzAyYWUzIn0sImlhdCI6MTczMjIyMDg4NH0.21KcJYfygp7qxA-6g56tiVoSlYLCv782NDDpL5s_4Fc"
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjczZjk3ZDRhYWFhMmEwNmNiYzAyYWUzIn0sImlhdCI6MTczMjIyMDg4NH0.21KcJYfygp7qxA-6g56tiVoSlYLCv782NDDpL5s_4Fc"
       },
       body: JSON.stringify({title, description, tag})
-    })
-    const json = await response.json();
+    });
+    const json = await response.json(); 
     console.log(json);
-
-    // logic to edit a Note in Client
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
-      if (element.id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
-      }      
-    }
-  };
+     let newNotes = JSON.parse(JSON.stringify(notes))
+    // Logic to edit in client
+    for (let index = 0; index < newNotes.length; index++) {
+      const element = newNotes[index];
+      if (element._id === id) {
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag; 
+        break; 
+      }
+    }  
+    setNotes(newNotes);
+  }
   // Delete Notes
   const deleteNote = async(id) => {
     //API Call 
@@ -81,7 +71,7 @@ const NoteState = (props) => {
       headers:{
         'Content-Type': 'aplication/json',
         "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjczZjk3ZDRhYWFhMmEwNmNiYzAyYWUzIn0sImlhdCI6MTczMjIyMDg4NH0.21KcJYfygp7qxA-6g56tiVoSlYLCv782NDDpL5s_4Fc"
-      },
+      },    
     })
     const json = await response.json();
     console.log(json);
