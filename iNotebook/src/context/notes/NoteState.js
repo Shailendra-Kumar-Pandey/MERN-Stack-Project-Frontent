@@ -14,7 +14,7 @@ const NoteState = (props) => {
      const response = await fetch(`${host}/api/notes/fetchallnotes`, {
       method: 'GET',
       headers:{
-        'Content-Type': 'aplication/json',
+        'Content-Type': 'application/json',
         "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjczZjk3ZDRhYWFhMmEwNmNiYzAyYWUzIn0sImlhdCI6MTczMjIyMDg4NH0.21KcJYfygp7qxA-6g56tiVoSlYLCv782NDDpL5s_4Fc"
       },
     });
@@ -48,6 +48,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({title, description, tag})
     });
+    // eslint-disable-next-line
     const json = await response.json();
      let newNotes = JSON.parse(JSON.stringify(notes))
     // Logic to edit in client
@@ -68,11 +69,13 @@ const NoteState = (props) => {
     const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
       method: 'DELETE',
       headers:{
-        'Content-Type': 'aplication/json',
+        'Content-Type': 'application/json',
         "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjczZjk3ZDRhYWFhMmEwNmNiYzAyYWUzIn0sImlhdCI6MTczMjIyMDg4NH0.21KcJYfygp7qxA-6g56tiVoSlYLCv782NDDpL5s_4Fc"
       },    
     })
+    // eslint-disable-next-line
     const json = await response.json();
+    
     // todo: API Call
   const newNote=notes.filter((note)=>{
     return note._id!==id;
