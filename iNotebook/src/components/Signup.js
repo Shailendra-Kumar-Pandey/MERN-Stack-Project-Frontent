@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = (props) => {
   const [credentails, setCredentails]=useState({name:"",email:"",username:"", password:"", cpassword:""})
   const navigate = useNavigate();
 const handleSubmit = async (e) => {
   e.preventDefault();
+  try{
   const response = await fetch("http://localhost:5000/api/auth/createuser", {
     method: "POST",
     headers: {
@@ -15,9 +16,14 @@ const handleSubmit = async (e) => {
   });
   const json = await response.json();
   console.log(json);
+  
       //Save the auth token and redirect
       localStorage.setItem('token', json.authtoken);
-      navigate('/home');
+      navigate('/');
+    props.showAlert("You are create Account iNotwbook!","success");
+  }catch(error){
+    props.showAlert("Invalid credentials ! ","danger");
+  }
 };
 
 const onChange = (e) => {
