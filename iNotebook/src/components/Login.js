@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
     const [credentails, setCredentails]=useState({email:"", password:""})
-    const navigate = useNavigate();
+    let navigate =useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -18,9 +18,8 @@ const Login = (props) => {
     if(json.success){
         //Save the auth token and redirect
         localStorage.setItem('token', json.authtoken);
-        navigate('/');
-    props.showAlert("Welcome You are Login!","success");
-
+        props.showAlert("Welcome You are Login!","success");
+        navigate('/home');
     }else{
     props.showAlert("Invalid credentials ! ","danger");
 

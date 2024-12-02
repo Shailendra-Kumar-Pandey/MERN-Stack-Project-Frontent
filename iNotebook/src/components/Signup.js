@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = (props) => {
   const [credentails, setCredentails]=useState({name:"",email:"",username:"", password:"", cpassword:""})
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 const handleSubmit = async (e) => {
   e.preventDefault();
   try{
@@ -19,7 +19,7 @@ const handleSubmit = async (e) => {
   
       //Save the auth token and redirect
       localStorage.setItem('token', json.authtoken);
-      navigate('/');
+      navigate('/home');
     props.showAlert("You are create Account iNotwbook!","success");
   }catch(error){
     props.showAlert("Invalid credentials ! ","danger");
