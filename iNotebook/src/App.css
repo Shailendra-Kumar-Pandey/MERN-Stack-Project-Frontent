@@ -27,6 +27,15 @@
 .App-link {
   color: #61dafb;
 }
+body{
+  background-color: rgb(185, 187, 190);
+  background-image: url('../public/The\ Notebook\ 1170x450.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+label{
+  color:black;
+}
 
 @keyframes App-logo-spin {
   from {

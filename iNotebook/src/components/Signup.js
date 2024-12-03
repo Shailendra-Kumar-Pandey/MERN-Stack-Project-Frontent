@@ -31,16 +31,17 @@ const onChange = (e) => {
 };
   return (
     <div className='container'>
+      <h1>Welcome to iNotebook! Create Account</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="name" className="form-label" >Name</label>
+          <label htmlFor="name" className="form-label" > Name</label>
           <input type="text" className="form-control" id="name"name="name" aria-describedby="emailHelp" placeholder="Raghav Mishra" onChange={onChange} minLength={5} required/>
-          <small id="emailHelp" className="form-text text-muted"> We'll never share your email with anyone else.</small>
+          <small id="emailHelp" className="form-text text-dark"> We'll never share your email with anyone else.</small>
         </div>
         <div className="mb-3">
           <label htmlFor="email" className="form-label" >Email address</label>
           <input type="email" className="form-control" id="email"  name="email" aria-describedby="emailHelp" placeholder="Enter email" onChange={onChange}/>
-          <small id="emailHelp" className="form-text text-muted"> We'll never share your email with anyone else.</small>
+          <small id="emailHelp" className="form-text text-dark"> We'll never share your email with anyone else.</small>
         </div>
         <div className="mb-3">
           <label htmlFor="username" className="form-label" >User Name</label>

@@ -31,7 +31,8 @@ const Login = (props) => {
   };
 
   return (
-    <div>
+    <div className="container">
+      <h1>Welcome to iNootbook Login Page! </h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label" >Email address</label>
@@ -45,7 +46,7 @@ const Login = (props) => {
             value={credentails.email}
             onChange={onChange}
           />
-          <small id="emailHelp" className="form-text text-muted">
+          <small id="emailHelp" className="form-text text-dark">
             We'll never share your email with anyone else.
           </small>
         </div>
